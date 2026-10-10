@@ -1,0 +1,151 @@
+/* Palette taken from Assets/Scripts/World/WorldTheme.cs, converted to hex.
+   No web fonts on purpose: a privacy policy page that calls out to Google Fonts
+   logs the reader's IP with a third party, which is the thing this page promises
+   does not happen. ui-rounded gives the game's rounded face on Apple devices and
+   falls back cleanly everywhere else. */
+:root {
+  --sky-top: #FCF2DC;
+  --sky-bottom: #F6E4C0;
+  --card: #FFF6E5;
+  --ink: #5A2D0C;
+  --muted: #7F674B;
+  --link: #B92850;
+  --rule: #EADCC2;
+  --band: #6B3410;
+  --band-edge: #4E2408;
+  --card-edge: #6B3410;
+  --panel: #C97B3C;
+  --shadow: rgba(90, 45, 12, 0.13);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --sky-top: #2A1406;
+    --sky-bottom: #1E0E04;
+    --card: #3A1B06;
+    --ink: #FCF2DC;
+    --muted: #C7B49A;
+    --link: #F0A868;
+    --rule: #55290C;
+    --band: #6B3410;
+    --band-edge: #4E2408;
+    --card-edge: #8A4A1A;
+    --panel: #C97B3C;
+    --shadow: rgba(0, 0, 0, 0.45);
+  }
+}
+:root[data-theme="dark"] {
+  --sky-top: #2A1406;
+  --sky-bottom: #1E0E04;
+  --card: #3A1B06;
+  --ink: #FCF2DC;
+  --muted: #C7B49A;
+  --link: #F0A868;
+  --rule: #55290C;
+  --band: #6B3410;
+  --band-edge: #4E2408;
+  --card-edge: #8A4A1A;
+  --shadow: rgba(0, 0, 0, 0.45);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--sky-bottom);
+  background-image: linear-gradient(var(--sky-top), var(--sky-bottom));
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* The nori strip the pieces sit on, borrowed as a header band. */
+.band {
+  background: var(--band);
+  border-bottom: 5px solid var(--band-edge);
+  padding: 1.5rem 16px 1.25rem;
+  text-align: center;
+}
+.band a { display: inline-block; line-height: 0; }
+.logo { width: 100%; max-width: 260px; height: auto; }
+
+.wrap { max-width: 44rem; margin: 0 auto; padding: 0 16px 4rem; }
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  padding: 1.25rem 0 1.5rem;
+}
+nav a {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 2px solid transparent;
+}
+nav a:hover { border-color: var(--rule); }
+nav a[aria-current="page"] {
+  background: var(--panel);
+  border-color: var(--band);
+  color: #FFF6E5;
+}
+
+.card {
+  background: var(--card);
+  border: 3px solid var(--card-edge);
+  border-radius: 22px;
+  box-shadow: 0 6px 0 var(--shadow);
+  padding: 2rem 1.5rem 2.25rem;
+}
+
+h1 {
+  font-size: 1.7rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.3rem;
+}
+h2 {
+  font-size: 1.1rem;
+  margin: 2rem 0 0.5rem;
+  letter-spacing: -0.01em;
+}
+h2:first-of-type { margin-top: 1.75rem; }
+.updated { color: var(--muted); font-size: 0.875rem; margin: 0 0 1.5rem; }
+p { margin: 0 0 0.9rem; }
+ul { padding-left: 1.25rem; margin: 0 0 0.9rem; }
+li { margin: 0.25rem 0; }
+a { color: var(--link); text-decoration-thickness: 2px; text-underline-offset: 2px; }
+strong { font-weight: 800; }
+
+/* Decorative only. Screen readers skip these, alt is empty by design. */
+.cast {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0.5rem;
+  margin: 2.25rem 0 1rem;
+}
+.cast img { width: 54px; height: auto; }
+@media (max-width: 380px) { .cast img { width: 44px; } }
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding-top: 0.5rem;
+}
+footer a { color: var(--muted); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .cast img { transition: transform 180ms ease-out; }
+  .cast img:hover { transform: translateY(-6px) rotate(-4deg); }
+}
